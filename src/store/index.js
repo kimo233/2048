@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     score:0,
-    userName:''
+    userName:'',
+    avatar:''
   },
   getters: {
   },
@@ -13,6 +14,9 @@ export default createStore({
     },
     setUserName(state,value){
       state.userName = value
+    },
+    setAvatar(state, value){
+      state.avatar = value
     }
   },
   actions: {

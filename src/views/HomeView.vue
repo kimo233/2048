@@ -1,12 +1,16 @@
 <template>
 <div class="Home">
-  <div>当前得分：{{score}}</div>
+  <div class="top">当前得分：{{score}}
+     <img :src="avatar" @click.stop="uploadHeadImg"/>
+  </div>
   <div @click="update">上传</div>
   <game-container></game-container>
 </div>
   
 </template>
 <script>
+import axios from 'axios';
+import qs from 'qs'
 import gameContainer from '../components/gameContainer.vue'
 import {mapState} from'vuex'
 export default {
@@ -14,9 +18,10 @@ export default {
     gameContainer
   },
   computed:{
-    ...mapState(['score','userName'])
+    ...mapState(['score','userName','avatar'])
   },
   methods:{
+
     update(){
       var that =this
       if(this.userName){

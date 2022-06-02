@@ -108,6 +108,7 @@ export default {
                             
                             }
                             that.$store.commit('setUserName',that.$data.ruleForm.name)
+                            localStorage.setItem('userName',that.$data.ruleForm.name)
                             console.log(that.$store.state.userName)
                         }else{
                             console.log("密码错误")
