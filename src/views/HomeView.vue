@@ -20,13 +20,19 @@ export default {
   computed:{
     ...mapState(['score','userName','avatar'])
   },
+  data(){
+    return{
+      userName:'',
+    }
+  },
   methods:{
 
     update(){
       var that =this
+      this.userName=localStorage.getItem('userName')
       if(this.userName){
          axios({
-                    url:`/API/update/`+that.$data.userName+'/'+that.$data.score, //后端的接口地址                    	
+                    url:`/API/update/`+that.userName+'/'+that.score, //后端的接口地址                    	
                     method:"get",
                     transformRequest:[
                         function(data){
@@ -40,8 +46,10 @@ export default {
                     dataType:"json",
                 })
                 .then((res) => { 
-                  that.$router.push("/rank")
+                  that.$router.push('/rank')
                 })
+      }else{
+        this.$router.push('/login')
       }
     }
   }

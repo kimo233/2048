@@ -93,7 +93,7 @@ app.get("/login/:id",(req,res)=>{
 })
 //更新成绩
 app.get("/update/:id/:goal",(req,res)=>{
-    let sql = "update User SET bestGoal="+req.params.goal+" where userName='"+req.params.id+"'";
+    let sql = "update User SET bestGoal="+req.params.goal+" where userName='"+req.params.id+"' AND bestGoal<"+req.params.goal;
     db.query(sql,(err,result)=>{
         if(err){
             console.log(err);
