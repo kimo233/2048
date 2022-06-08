@@ -1,5 +1,7 @@
 <template>
 <div class="Home">
+  <div class="text">2048</div>
+  <div class="top">当前用户：{{username}}</div>
   <div class="top">当前得分：{{score}}
      <img :src="avatar" @click.stop="uploadHeadImg"/>
   </div>
@@ -20,13 +22,18 @@ export default {
   computed:{
     ...mapState(['score','userName','avatar'])
   },
-  data(){
+  mounted(){
+    this.name()
+  },
+  data(){ 
     return{
       userName:'',
     }
   },
   methods:{
-
+    name(){
+      this.username=localStorage.getItem('userName')
+    },
     update(){
       var that =this
       this.userName=localStorage.getItem('userName')
@@ -56,6 +63,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.text {
+        font-size: 20px;
+        font-weight: 600;
+      }
 .home{
   width: 100%;
   height: 100%;

@@ -1,4 +1,5 @@
 <template>
+<div class="text">排行榜</div>
     <el-table
       :data="arr"
       style="width: 100%">
@@ -17,6 +18,7 @@
       </el-table-column>
     </el-table>
     <el-button @click="save">存到本地</el-button>
+    <el-button @click="play">游玩2048</el-button>
 </template>
 <script>
 import axios from 'axios';
@@ -61,6 +63,9 @@ methods:{
       save(){
           localStorage.rank=JSON.stringify(this.arr)
           console.log(localStorage.rank)
+      },
+      play(){
+          this.$router.push('/')
       }
   },
   created(){
@@ -68,3 +73,9 @@ methods:{
   }
 }
 </script>
+<style lang="less" scoped>
+.text {
+        font-size: 20px;
+        font-weight: 600;
+      }
+</style>
