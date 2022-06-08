@@ -13,7 +13,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      imgStr: require('../assets/logo.png'),
+      imgStr: '',
       errorStr: ''
     }
   },
@@ -42,14 +42,22 @@ export default {
           // 图片的 base64 格式, 可以直接当成 img 的 src 属性值
           var dataURL = reader.result
           console.log(dataURL)
+          localStorage.setItem('pic',dataURL)
           _this.imgStr = dataURL
-          // 下面逻辑处理
         }
       } else {
         console.log('大小不合适')
         _this.errorStr = '图片大小超出范围'
       }
+    },
+    getPic(){
+      if(localStorage.getItem('pic')){
+        this.imgStr=(localStorage.getItem('pic')).replace(/[\r\n]/g,"")
+      }
     }
+  },
+  mounted(){
+    this.getPic()
   }
 
 }
